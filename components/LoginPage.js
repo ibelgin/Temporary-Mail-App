@@ -24,7 +24,7 @@ const Dev_Width = Dimensions.get('window').width
 export default class LoginPage extends React.Component{
 
   OnSignIn=()=>{
-    this.props.navigation.navigate("Login")
+    this.props.navigation.navigate("Email")
   }
 
   onPressLogo=()=>{

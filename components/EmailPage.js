@@ -9,7 +9,8 @@ import {
   Dimensions,
   StyleSheet,
   Image,
-  FlatList
+  FlatList,
+  AsyncStorage
 } from "react-native"
 
 
@@ -28,51 +29,86 @@ const generate=()=>{
 }
 
 function getRndInteger(min, max) {
-  return Math.floor(Math.random() * (max - min) ) + min;
+  return  Math.floor(Math.random() * (max - min) ) + min;
 }
 
+
 export default class LoginPage extends React.Component{
+
+  UNSAFE_componentWillMount(){
+    this.getMyObject()
+  }
+
+  setObjectValue = async () => {
+  try {
+    const jsonValue = JSON.stringify(this.state.data)
+    await AsyncStorage.setItem('Emails', jsonValue)
+  } catch(e) {
+    // save error
+  }
+  console.log('Done.')
+}
+
+
+getMyObject = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem('Emails')
+    this.setState({ data : jsonValue != null ? JSON.parse(jsonValue) : null}) 
+    console.log(this.state.data)
+  } catch(e) {
+    // read error
+  }
+}
+
+  OnPressNew=()=>{
+    fetch('https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=1')
+      .then((response) => response.json())
+      .then((json) => {
+        this.setState({ email: json[0] });
+        this.setState({ isLoading : true })
+        this.listformating()
+      })
+      .catch((error) => console.error(error))
+  }
+
+  listformating=()=>{
+    const test = {
+        "email":this.state.email,
+        "time":generate(),
+        "color":colors[getRndInteger(0,3)]
+  }
+    this.state.data.push(test)
+    this.setState({ data : this.state.data})
+    this.setState({ isLoading: false });
+    this.setObjectValue()
+    this.getMyObject()
+  }
+
+  onPressProps=(props)=>{
+    this.props.navigation.navigate("EmailNow",{
+      "email":props
+    })
+  }
 
   constructor(props){
     super(props);
     this.state={
-      data:[
-        {
-          "email":"belginandroid@gmail.com","color":colors[getRndInteger(0,3)],"time":generate()
-        },
-        {
-          "email":"belginandroid@gmail.com","color":"","time":generate()
-        },
-        {
-          "email":"belginandroid@gmail.com","color":colors[getRndInteger(0,3)],"time":generate()
-        },
-        {
-          "email":"belginandroid@gmail.com","color":"","time":generate()
-        },
-        {
-          "email":"belginandroid@gmail.com","color":colors[getRndInteger(0,3)],"time":generate()
-        },
-
-        {
-          "email":"belginandroid@gmail.com","color":"","time":generate()
-        },{
-          "email":"belginandroid@gmail.com","color":colors[getRndInteger(0,3)],"time":generate()
-        },
-
-      ]
+      isLoading: true,
+      email:"",
+      data:[]
     }
   }
 
   renderItem = ({ item }) => (
-    <View style={{height:90,width:"100%",alignItems:"center"}}>
+    <TouchableOpacity style={{height:90,width:"100%",alignItems:"center"}} onPress={()=> this.onPressProps(item.email)}>
       <View style={{backgroundColor:"#222228",height:"100%",width:"93%",flexDirection:"row",borderRadius:10}}>
         <View style={{height:"100%",width:"3%",backgroundColor:item.color,borderRadius:45}}/>
         <View style={{height:"100%",width:"80%",justifyContent:"center",marginLeft:"10%"}}>
-          <Text style={{fontSize:15,color:'#FFF'}}>{item.email}</Text>
-          <Text style={{fontSize:13,color:"gray",marginTop:"5%"}}>{item.time}</Text>
+          <Text numberOfLines={1} adjustsFontSizeToFit={true} style={{fontSize:15,color:'#FFF'}}>{item.email}</Text>
+          <Text numberOfLines={1} adjustsFontSizeToFit={true} style={{fontSize:13,color:"gray",marginTop:"5%"}}>{item.time}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   renderSeparator = () => (
@@ -103,7 +139,7 @@ export default class LoginPage extends React.Component{
                   marginTop:"8%",
                   justifyContent:"center",
                   alignItems:"center"
-                  }}>
+                  }} onPress={this.OnPressNew}>
               <Text style={{fontSize:13,color:"#FFF"}}>New Email</Text>
             </TouchableOpacity>
           </View>
@@ -116,6 +152,8 @@ export default class LoginPage extends React.Component{
             renderItem={this.renderItem}
             keyExtractor={item => item.id}
             ItemSeparatorComponent={this.renderSeparator}
+            bounces={true}  
+            refreshing={this.state.isLoading}
           />
         </View>
       </SafeAreaView>
