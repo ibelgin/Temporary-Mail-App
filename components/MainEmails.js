@@ -20,7 +20,7 @@ const Dev_Width = Dimensions.get('window').width
 
 import Entypo from "react-native-vector-icons/Entypo"
 
-const colors = ["#55E552","#FF8A00","#572CE8"]
+const colors = ["#F26D21","#1496BB","#BB86FC"]
 
 const generate=()=>{
     var date = new Date().getDate(); //Current Date
@@ -33,7 +33,7 @@ function getRndInteger(min, max) {
   return  Math.floor(Math.random() * (max - min) ) + min;
 }
 
-export default class MainEmailsPage extends React.Component{
+export default class LoginPage extends React.Component{
 
   constructor(props){
     super(props);
@@ -55,7 +55,6 @@ export default class MainEmailsPage extends React.Component{
     fetch("https://www.1secmail.com/api/v1/?action=getMessages&login="+this.state.email_name+"&domain="+this.state.email_domain)
       .then((response) => response.json())
       .then((json) => {
-        console.log(json)
         this.setState({ isLoading : true })
         this.setState({ data : []})
         for (i in json){
@@ -82,8 +81,16 @@ export default class MainEmailsPage extends React.Component{
     this.setState({ data : this.state.data})
   }
 
+   onPressProps=(props)=>{
+    this.props.navigation.navigate("Content",{
+      "email_id":props,
+      "email_domain":this.state.email_domain,
+      "email_name":this.state.email_name
+    })
+  }
+
   renderItem = ({ item }) => (
-    <TouchableOpacity style={{height:120,width:"100%",alignItems:"center"}} onPress={this.OnPressNext}>
+    <TouchableOpacity style={{height:120,width:"100%",alignItems:"center"}} onPress={()=> this.onPressProps(item.id)}>
       <View style={{backgroundColor:"#222228",height:"100%",width:"93%",borderRadius:10}}>
             <View style={{flexDirection:"row",alignItems:"center",height:"40%",width:"100%"}}>
               <Entypo name="dot-single" size={30} color={item.color}/>
@@ -120,11 +127,11 @@ export default class MainEmailsPage extends React.Component{
             <FlatList
             data={this.state.data}
             renderItem={this.renderItem}
-            keyExtractor={item => item.id}
             ItemSeparatorComponent={this.renderSeparator}
             bounces={true}  
             onRefresh={this.OnPressNew}
             refreshing={this.state.isLoading}
+	    keyExtractor={(item, index) => 'key'+index}
           />
         </View>
       </SafeAreaView>

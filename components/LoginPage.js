@@ -68,7 +68,7 @@ export default class LoginPage extends React.Component{
               bounces={true}
           >
             <View style={{height:"80%",width:"100%",justifyContent:"center",alignItems:"center",flexDirection:"row"}}>
-              <Image resizeMode="contain" source={require("../assets/lock.png")} style={{height:"40%",width:"30%"}}/>
+              <Image resizeMode="contain" source={{uri:"https://media-public.canva.com/MADpjvqNf0I/1/thumbnail_large.png"}} style={{height:"40%",width:"30%"}}/>
 	      <View style={{justifyContent:"center",alignItems:"center",height:"100%",width:"50%"}}>
                 <Text style={{color:"#F1F1F1",fontSize:17,textAlign: 'center'}}> Protect Your Privacy ! </Text>
                 <Text style={{color:"gray",fontSize:15,marginTop:"5%",textAlign: 'center'}}>Protect Yourself From Hacker's. Survive long enough to be at potential risk to be hacked. </Text>
@@ -92,7 +92,7 @@ export default class LoginPage extends React.Component{
             </View>
 
 	    <View style={{height:"80%",width:"100%",justifyContent:"center",alignItems:"center",flexDirection:"row"}}>
-              <Image resizeMode="contain" source={{uri:"https://media-public.canva.com/MADnJiaYvR4/1/thumbnail_large.png"}}style={{height:"40%",width:"30%"}}/>
+              <Image resizeMode="contain" source={{uri:"https://media-public.canva.com/q72Mg/MACzUDq72Mg/2/tl.png"}}style={{height:"40%",width:"30%"}}/>
 	      <View style={{justifyContent:"center",alignItems:"center",height:"100%",width:"60%"}}>
                 <Text style={{color:"#F1F1F1",fontSize:17,textAlign: 'center'}}> What Are You Waiting For ? </Text>
                 <TouchableOpacity onPress={()=>this.RBSheet.close()} style={{shadowColor: '#1A1A1F',shadowOffset: { width: 0, height: 1 },shadowOpacity: 0.8,shadowRadius: 2,elevation:5,height:"20%",width:"80%",backgroundColor:"#657ee4",borderRadius:10,marginTop:"10%",justifyContent:"center",alignItems:"center"}}>
