@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Dimensions,
   ScrollView,
-ActivityIndicator
+  ActivityIndicator
 } from "react-native"
 
 import HTML from 'react-native-render-html';
