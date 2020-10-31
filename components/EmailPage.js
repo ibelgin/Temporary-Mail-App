@@ -11,7 +11,7 @@ import {
   Image,
   FlatList,
   AsyncStorage,
-Alert
+  Alert
 } from "react-native"
 
 
