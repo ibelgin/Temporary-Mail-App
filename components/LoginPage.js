@@ -19,8 +19,6 @@ import SwipeRender from "react-native-swipe-render";
 const Dev_Height = Dimensions.get('window').height
 const Dev_Width = Dimensions.get('window').width
 
-
-
 export default class LoginPage extends React.Component{
 
   OnSignIn=()=>{
@@ -111,8 +109,8 @@ export default class LoginPage extends React.Component{
 
         <View style={styles.google_signin_view}>
           <TouchableOpacity style={styles.google_signin_buttom} onPress={this.OnSignIn}>
-            <Icon name="facebook-square" size={24} color="#FFF" />
-            <Text style={styles.google_signin_text}> Login With Facebook </Text>
+            <Icon name="rocket1" size={24} color="#FFF" />
+            <Text style={styles.google_signin_text}> Let's Start </Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>
