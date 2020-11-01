@@ -12,7 +12,8 @@ import {
   FlatList,
   AsyncStorage,
   Animated,
-  PanResponder
+  PanResponder,
+  Alert
 } from "react-native"
 
 
