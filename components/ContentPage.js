@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   Dimensions,
   ScrollView,
-  ActivityIndicator
+  ActivityIndicator,
+  StyleSheet
 } from "react-native"
 
 import HTML from 'react-native-render-html';
@@ -42,11 +43,37 @@ export default class ContentPage extends React.Component{
 
   render(){
     return(
-      <ScrollView style={{flex:1,backgroundColor:"#1A1A1F",alignItem:"center",height:"100%",width:"100%",alignSelf:"center"}} >
-        {this.state.isLoading ? <ActivityIndicator style={{marginTop:"20%"}} color="#FFF" /> : (
-          <HTML html={this.state.data}  containerStyle={{height:"90%",width:"90%",alignSelf:"center",marginTop:"10%"}} textSelectable={true} decodeEntities={true} baseFontStyle={{color:"#FFF"}}/>
+      <ScrollView style={styles.container} >
+        {this.state.isLoading ? <ActivityIndicator style={styles.ActivityIndicator_Style} color="#FFF" /> : (
+          <HTML 
+          html={this.state.data}  
+          containerStyle={styles.HTML_Container_Style} 
+          textSelectable={true} 
+          decodeEntities={true}
+          baseFontStyle={{color:"#FFF"}}/>
         )}  
       </ScrollView>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor:"#1A1A1F",
+    alignItem:"center",
+    height:"100%",
+    width:"100%",
+    alignSelf:"center"
+  },
+  ActivityIndicator_Style:{
+    marginTop:"20%"
+  },
+  HTML_Container_Style:{
+    height:"90%",
+    width:"90%",
+    alignSelf:"center",
+    marginTop:"10%"
+  }
+})
+
