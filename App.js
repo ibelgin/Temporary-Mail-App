@@ -12,7 +12,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-	initialRouteName={'Screen1'}
+	initialRouteName={'Login'}
         screenOptions={{
           gestureEnabled: true,
           gestureDirection: 'vertical',
