@@ -70,7 +70,7 @@ export default class LoginPage extends React.Component{
   }
 
   listformating=()=>{
-    const test = {
+    const test = { 
         "email_from":this.state.email_from,
         "email_subject":this.state.email_subject,
         "email_date":this.state.email_date,
@@ -90,10 +90,10 @@ export default class LoginPage extends React.Component{
   }
 
   renderItem = ({ item }) => (
-    <TouchableOpacity style={{height:120,width:"100%",alignItems:"center"}} onPress={()=> this.onPressProps(item.id)}>
-      <View style={{backgroundColor:"#222228",height:"100%",width:"93%",borderRadius:10}}>
-            <View style={{flexDirection:"row",alignItems:"center",height:"40%",width:"100%"}}>
-              <Entypo name="dot-single" size={30} color={item.color}/>
+    <TouchableOpacity style={styles.emails_main_view} onPress={()=> this.onPressProps(item.id)}>
+      <View style={styles.view_background}>
+        <View style={styles.dot_view}>
+          <Entypo name="dot-single" size={30} color={item.color}/>
               <Text 
               numberOfLines={1} 
               adjustsFontSizeToFit={true} 
@@ -102,8 +102,8 @@ export default class LoginPage extends React.Component{
               </Text>
             </View>
         <View style={{height:"50%",width:"90%"}}>
-          <Text style={{fontSize:13,color:"white",marginLeft:"8%"}} numberOfLines={2} >{item.email_subject}</Text>
-          <Text style={{fontSize:13,color:"gray",marginLeft:"8%",marginTop:"4%"}} numberOfLines={1} adjustsFontSizeToFit={true}>{item.email_date}</Text>
+          <Text style={styles.email_subject_text} numberOfLines={2} >{item.email_subject}</Text>
+          <Text style={styles.email_date_text} numberOfLines={1} adjustsFontSizeToFit={true}>{item.email_date}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -122,18 +122,18 @@ export default class LoginPage extends React.Component{
   render(){
     return(
       <SafeAreaView style={styles.container}>
-      <View style={{height:"3%",width:"100%",alignItems:"center",justifyContent:"center"}}/>
-      <View style={{height:"97%",width:"100%"}}>
-            <FlatList
-            data={this.state.data}
-            renderItem={this.renderItem}
-            ItemSeparatorComponent={this.renderSeparator}
-            bounces={true}  
-            onRefresh={this.OnPressNew}
-            refreshing={this.state.isLoading}
-	    keyExtractor={(item, index) => 'key'+index}
-          />
-        </View>
+        <View style={styles.main_view}/>
+          <View style={styles.flat_list_view}>
+              <FlatList
+                data={this.state.data}
+                renderItem={this.renderItem}
+                ItemSeparatorComponent={this.renderSeparator}
+                bounces={true}  
+                onRefresh={this.OnPressNew}
+                refreshing={this.state.isLoading}
+                keyExtractor={(item, index) => 'key'+index}
+              />
+          </View>
       </SafeAreaView>
     )
   }
@@ -145,6 +145,43 @@ const styles = StyleSheet.create({
     height:Dev_Height,
     width:Dev_Width,
     backgroundColor:"#1A1A1F",
-    
+  },
+  main_view:{
+    height:"3%",
+    width:"100%",
+    alignItems:"center",
+    justifyContent:"center"
+  },
+  flat_list_view:{
+    height:"97%",
+    width:"100%"
+  },
+  emails_main_view:{
+    height:120,
+    width:"100%",
+    alignItems:"center"
+  },
+  view_background:{
+    backgroundColor:"#222228",
+    height:"100%",
+    width:"93%",
+    borderRadius:10
+  },
+  dot_view:{
+    flexDirection:"row",
+    alignItems:"center",
+    height:"40%",
+    width:"100%"
+  },
+  email_subject_text:{
+    fontSize:13,
+    color:"white",
+    marginLeft:"8%"
+  },
+  email_date_text:{
+    fontSize:13,
+    color:"gray",
+    marginLeft:"8%",
+    marginTop:"4%"
   }
 })
