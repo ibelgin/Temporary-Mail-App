@@ -114,12 +114,20 @@ getMyObject = async () => {
   }
 
   renderItem = ({ item }) => (
-    <TouchableOpacity style={{height:90,width:"100%",alignItems:"center"}} onPress={()=> this.onPressProps(item.email,item.time)}>
-      <View style={{backgroundColor:"#222228",height:"100%",width:"93%",flexDirection:"row",borderRadius:10}}>
+    <TouchableOpacity style={styles.email_touch} onPress={()=> this.onPressProps(item.email,item.time)}>
+      <View style={styles.email_main_view}>
         <View style={{height:"100%",width:"3%",backgroundColor:item.color,borderRadius:45}}/>
-        <View style={{height:"100%",width:"80%",justifyContent:"center",marginLeft:"10%"}}>
-          <Text numberOfLines={1} adjustsFontSizeToFit={true} style={{fontSize:15,color:'#FFF'}}>{item.email}</Text>
-          <Text numberOfLines={1} adjustsFontSizeToFit={true} style={{fontSize:13,color:"gray",marginTop:"5%"}}>{moment(item.time).format("dddd, MMMM Do YYYY")}</Text>
+        <View style={styles.email_container}>
+          <Text 
+            numberOfLines={1} 
+            adjustsFontSizeToFit={true} 
+            style={styles.email_text}>
+               {item.email}
+          </Text>
+          <Text 
+          numberOfLines={1} 
+          adjustsFontSizeToFit={true} 
+          style={styles.timestamp_text}>{moment(item.time).format("dddd, MMMM Do YYYY")}</Text>
         </View>
       </View>
     </TouchableOpacity>
@@ -137,35 +145,25 @@ getMyObject = async () => {
   render(){
     return(
       <SafeAreaView style={styles.container}>
-      <View style={{height:"30%",width:"100%",alignItems:"center",justifyContent:"center"}}>
-        <View style={{
-          height:"80%",width:"90%",backgroundColor:"#222228",borderRadius:15,alignItems:"center",flexDirection:"row",justifyContent:"center"}}>
-          <Image source={{uri:"https://media-public.canva.com/1SMvs/MADdd_1SMvs/2/tl.png"}} resizeMode="contain" style={{height:"80%",width:"40%"}} />
-          <View style={{height:"100%",width:"50%",justifyContent:"center",alignItems:"center"}}>
-            <Text style={{fontSize:18,color:"white",marginLeft:"10%"}}>Hi There !</Text>
+      <View style={styles.main_email_box_view}>
+        <View style={styles.inside_email_box_view}>
+          <Image source={{uri:"https://media-public.canva.com/1SMvs/MADdd_1SMvs/2/tl.png"}} resizeMode="contain" style={styles.image_view} />
+          <View style={styles.new_email_text_and_button_View}>
+            <Text style={styles.hi_there_text}>Hi There !</Text>
             <TouchableOpacity 
-                style={{
-                  height:"20%",
-                  width:"75%",
-                  backgroundColor:"#657EE4",
-                  marginLeft:"10%",
-                  borderRadius:10,
-                  marginTop:"8%",
-                  justifyContent:"center",
-                  alignItems:"center"
-                  }} onPress={this.OnPressNew}>
-              <Text style={{fontSize:13,color:"#FFF"}}>New Email</Text>
+                style={styles.new_email_button} onPress={this.OnPressNew}>
+              <Text style={styles.new_email_button_text}>New Email</Text>
             </TouchableOpacity>
           </View>
         </View>
       </View>
       
-      <View style={{height:"70%",width:"100%"}}>
+      <View style={styles.list_main_view}>
           <SwipeableFlatList
             data={this.state.data}
             renderItem={this.renderItem}
             renderRight={({ item }) => (
-                <TouchableOpacity style={{width:90,height:90,justifyContent:"center",alignItems:"center"}} onPress={this.deleteItemById(item.email)}>
+                <TouchableOpacity style={styles.delete_button} onPress={this.deleteItemById(item.email)}>
                   <Icon name="close" size={24} color="#FFF"/>
                 </TouchableOpacity>
             )}
@@ -187,5 +185,86 @@ const styles = StyleSheet.create({
     height:Dev_Height,
     width:Dev_Width,
     backgroundColor:"#1A1A1F"
+  },
+  main_email_box_view:{
+    height:"30%",
+    width:"100%",
+    alignItems:"center",
+    justifyContent:"center"
+  },
+  inside_email_box_view:{
+    height:"80%",
+    width:"90%",
+    backgroundColor:"#222228",
+    borderRadius:15,
+    alignItems:"center",
+    flexDirection:"row",
+    justifyContent:"center"
+  },
+  image_view:{
+    height:"80%",
+    width:"40%"
+  },
+  new_email_text_and_button_View:{
+    height:"100%",
+    width:"50%",
+    justifyContent:"center",
+    alignItems:"center"
+  },
+  hi_there_text:{
+    fontSize:18,
+    color:"white",
+    marginLeft:"10%"
+  },
+  new_email_button:{
+    height:"20%",
+    width:"75%",
+    backgroundColor:"#657EE4",
+    marginLeft:"10%",
+    borderRadius:10,
+    marginTop:"8%",
+    justifyContent:"center",
+    alignItems:"center"
+  },
+  new_email_button_text:{
+    fontSize:13,
+    color:"#FFF"
+  },
+  list_main_view:{
+    height:"70%",
+    width:"100%"
+  },
+  delete_button:{
+    width:90,
+    height:90,
+    justifyContent:"center",
+    alignItems:"center"
+  },
+  email_touch:{
+    height:90,
+    width:"100%",
+    alignItems:"center"
+  },
+  email_main_view:{
+    backgroundColor:"#222228",
+    height:"100%",
+    width:"93%",
+    flexDirection:"row",
+    borderRadius:10
+  },
+  email_container:{
+    height:"100%",
+    width:"80%",
+    justifyContent:"center",
+    marginLeft:"10%"
+  },
+  email_text:{
+    fontSize:15,
+    color:'#FFF'
+  },
+  timestamp_text:{
+    fontSize:13,
+    color:"gray",
+    marginTop:"5%"
   }
 })
