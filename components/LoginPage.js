@@ -54,62 +54,74 @@ export default class LoginPage extends React.Component{
             }
           }}
         >
-            <SwipeRender
-              index={0} // default 0
-              loop={false} // default false
-              loadMinimal={true} // default false
-              loadMinimalSize={2}
-              autoplay={false} // default false
-              horizontal={true} // default true
-              showsPagination={true}
-              autoplayTimeout={3}
-              bounces={true}
-          >
-            <View style={{height:"80%",width:"100%",justifyContent:"center",alignItems:"center",flexDirection:"row"}}>
-              <Image resizeMode="contain" source={{uri:"https://media-public.canva.com/MADpjvqNf0I/1/thumbnail_large.png"}} style={{height:"40%",width:"30%"}}/>
-	      <View style={{justifyContent:"center",alignItems:"center",height:"100%",width:"50%"}}>
-                <Text style={{color:"#F1F1F1",fontSize:17,textAlign: 'center'}}> Protect Your Privacy ! </Text>
-                <Text style={{color:"gray",fontSize:15,marginTop:"5%",textAlign: 'center'}}>Protect Yourself From Hacker's. Survive long enough to be at potential risk to be hacked. </Text>
-	      </View>
-            </View>
+        <SwipeRender
+          index={0} // default 0
+          loop={false} // default false
+          loadMinimal={true} // default false
+          loadMinimalSize={2}
+          autoplay={true} // default false
+          horizontal={true} // default true
+          showsPagination={true}
+          autoplayTimeout={3}
+          bounces={true}
+        >
 
-            <View style={{height:"80%",width:"100%",justifyContent:"center",alignItems:"center",flexDirection:"row"}}>
-              <Image resizeMode="contain" source={{uri:"https://media-public.canva.com/MADr0Rcb_yI/1/thumbnail_large.png"}} style={{height:"40%",width:"30%"}}/>
-	      <View style={{justifyContent:"center",alignItems:"center",height:"100%",width:"50%"}}>
-                <Text style={{color:"#F1F1F1",fontSize:17,textAlign: 'center'}}> Say No To Spam ! </Text>
-                <Text style={{color:"gray",fontSize:15,marginTop:"5%",textAlign: 'center'}}>The Throwaway ID Is Your Safe Heaven From Spam And Junk Emails Filling Up Your Inbox.  </Text>
+        
+            
+  <View style={styles.main_style_view_swipable}>
+    <Image resizeMode="contain" source={{uri:"https://media-public.canva.com/MADpjvqNf0I/1/thumbnail_large.png"}} style={styles.main_image_style}/>
+	      <View style={styles.secondary_view}>
+            <Text style={styles.text_header_style}> Protect Your Privacy ! </Text>
+            <Text style={styles.side_title_style}>
+               Protect Yourself From Hacker's. Survive long enough to be at potential risk to be hacked. 
+            </Text>
 	      </View>
-            </View>
+  </View>
 
-            <View style={{height:"80%",width:"100%",justifyContent:"center",alignItems:"center",flexDirection:"row"}}>
-              <Image resizeMode="contain" source={{uri:"https://media-public.canva.com/iYqdw/MAC-MXiYqdw/2/tl.png"}}style={{height:"40%",width:"30%"}}/>
-	      <View style={{justifyContent:"center",alignItems:"center",height:"100%",width:"50%"}}>
-                <Text style={{color:"#F1F1F1",fontSize:17}}> You Are Anonymous ! </Text>
-                <Text style={{color:"gray",fontSize:15,marginTop:"5%",textAlign: 'center'}}> Since Making A Disposable Email Does Not Require Contact Information, It Keeps Up The Anonymity </Text>
+  <View style={styles.main_style_view_swipable}>
+    <Image resizeMode="contain" source={{uri:"https://media-public.canva.com/MADr0Rcb_yI/1/thumbnail_large.png"}} style={styles.main_image_style}/>
+	      <View style={styles.secondary_view}>
+            <Text style={styles.text_header_style}> Say No To Spam ! </Text>
+            <Text style={styles.side_title_style}>
+              The Throwaway ID Is Your Safe Heaven From Spam And Junk Emails Filling Up Your Inbox.  
+            </Text>
 	      </View>
-            </View>
+  </View>
 
-	    <View style={{height:"80%",width:"100%",justifyContent:"center",alignItems:"center",flexDirection:"row"}}>
-              <Image resizeMode="contain" source={{uri:"https://media-public.canva.com/q72Mg/MACzUDq72Mg/2/tl.png"}}style={{height:"40%",width:"30%"}}/>
+  <View style={styles.main_style_view_swipable}>
+    <Image resizeMode="contain" source={{uri:"https://media-public.canva.com/iYqdw/MAC-MXiYqdw/2/tl.png"}} style={styles.main_image_style}/>
+	      <View style={styles.secondary_view}>
+            <Text style={{color:"#F1F1F1",fontSize:17}}> You Are Anonymous ! </Text>
+            <Text style={styles.side_title_style}> 
+              Since Making A Disposable Email Does Not Require Contact Information, It Keeps Up The Anonymity 
+            </Text>
+	      </View>
+  </View>
+
+	<View style={styles.main_style_view_swipable}>
+    <Image resizeMode="contain" source={{uri:"https://media-public.canva.com/q72Mg/MACzUDq72Mg/2/tl.png"}} style={styles.main_image_style}/>
 	      <View style={{justifyContent:"center",alignItems:"center",height:"100%",width:"60%"}}>
-                <Text style={{color:"#F1F1F1",fontSize:17,textAlign: 'center'}}> What Are You Waiting For ? </Text>
-                <TouchableOpacity onPress={()=>this.RBSheet.close()} style={{shadowColor: '#1A1A1F',shadowOffset: { width: 0, height: 1 },shadowOpacity: 0.8,shadowRadius: 2,elevation:5,height:"20%",width:"80%",backgroundColor:"#657ee4",borderRadius:10,marginTop:"10%",justifyContent:"center",alignItems:"center"}}>
-                  <Text style={{fontSize:16,color:"#FFF"}}> Let's Start </Text>
-                </TouchableOpacity>
+          <Text style={styles.text_header_style}> What Are You Waiting For ? </Text>
+          <TouchableOpacity 
+            onPress={()=>this.RBSheet.close()} 
+            style={styles.lets_start_button}
+            >
+            <Text style={{fontSize:16,color:"#FFF"}}> Let's Start </Text>
+          </TouchableOpacity>
 	      </View>
-            </View>
+  </View>
            
-          </SwipeRender>
-        </RBSheet>
+   </SwipeRender>
+</RBSheet>
 
         <TouchableOpacity style={styles.logo_view} onPress={this.onPressLogo}>
-          <Image source={require("../assets/logo.png")} style={styles.Image_Style}/>
+          <Image source={require("./assets/logo.png")} style={styles.Image_Style}/>
           <Text style={styles.login_Text}>Login In Into Your TmpMail Account To Begin</Text>
         </TouchableOpacity>
 
         <View style={styles.google_signin_view}>
           <TouchableOpacity style={styles.google_signin_buttom} onPress={this.OnSignIn}>
-            <Icon name="rocket1" size={24} color="#FFF" />
+            <Icon name="heart" size={20} color="#FFF" style={{marginLeft:"5%"}}/>
             <Text style={styles.google_signin_text}> Let's Start </Text>
           </TouchableOpacity>
         </View>
@@ -164,5 +176,47 @@ const styles = StyleSheet.create({
     fontSize:14,
     color:"#FFF",
     marginLeft:"5%"
-  }
+  },
+  main_style_view_swipable:{
+    height:"80%",
+    width:"100%",
+    justifyContent:"center",
+    alignItems:"center",
+    flexDirection:"row"
+  },
+  main_image_style:{
+    height:"40%",
+    width:"30%"
+  },
+  text_header_style:{
+    color:"#F1F1F1",
+    fontSize:17,
+    textAlign: 'center'
+  },
+  side_title_style:{
+    color:"gray",
+    fontSize:15,
+    marginTop:"5%",
+    textAlign: 'center'
+  },
+  secondary_view:{
+    justifyContent:"center",
+    alignItems:"center",
+    height:"100%",
+    width:"50%"
+  },
+  lets_start_button:{
+    shadowColor: '#1A1A1F',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.8,
+    shadowRadius: 2,
+    elevation:5,
+    height:"20%",
+    width:"80%",
+    backgroundColor:"#657ee4",
+    borderRadius:10,
+    marginTop:"10%",
+    justifyContent:"center",
+    alignItems:"center"
+  },
 })
