@@ -73,12 +73,12 @@ export default class LoginPage extends React.Component{
       resizeMode="contain" 
       source={{uri:"https://media-public.canva.com/MADpjvqNf0I/1/thumbnail_large.png"}}
       style={styles.main_image_style}/>
-	      <View style={styles.secondary_view}>
-            <Text style={styles.text_header_style}> Protect Your Privacy ! </Text>
-            <Text style={styles.side_title_style}>
-               Protect Yourself From Hacker's. Survive long enough to be at potential risk to be hacked. 
-            </Text>
-	      </View>
+	    <View style={styles.secondary_view}>
+        <Text style={styles.text_header_style}> Protect Your Privacy ! </Text>
+        <Text style={styles.side_title_style}>
+          Protect Yourself From Hacker's. Survive long enough to be at potential risk to be hacked. 
+        </Text>
+	    </View>
   </View>
 
   <View style={styles.main_style_view_swipable}>
@@ -86,12 +86,12 @@ export default class LoginPage extends React.Component{
       resizeMode="contain" 
       source={{uri:"https://media-public.canva.com/MADr0Rcb_yI/1/thumbnail_large.png"}} 
       style={styles.main_image_style}/>
-	      <View style={styles.secondary_view}>
-            <Text style={styles.text_header_style}> Say No To Spam ! </Text>
-            <Text style={styles.side_title_style}>
-              The Throwaway ID Is Your Safe Heaven From Spam And Junk Emails Filling Up Your Inbox.  
-            </Text>
-	      </View>
+	    <View style={styles.secondary_view}>
+        <Text style={styles.text_header_style}> Say No To Spam ! </Text>
+        <Text style={styles.side_title_style}>
+          The Throwaway ID Is Your Safe Heaven From Spam And Junk Emails Filling Up Your Inbox.  
+      </Text>
+	    </View>
   </View>
 
   <View style={styles.main_style_view_swipable}>
@@ -99,12 +99,12 @@ export default class LoginPage extends React.Component{
       resizeMode="contain" 
       source={{uri:"https://media-public.canva.com/iYqdw/MAC-MXiYqdw/2/tl.png"}} 
       style={styles.main_image_style}/>
-	      <View style={styles.secondary_view}>
-            <Text style={{color:"#F1F1F1",fontSize:17}}> You Are Anonymous ! </Text>
-            <Text style={styles.side_title_style}> 
-              Since Making A Disposable Email Does Not Require Contact Information, It Keeps Up The Anonymity 
-            </Text>
-	      </View>
+	    <View style={styles.secondary_view}>
+        <Text style={{color:"#F1F1F1",fontSize:17}}> You Are Anonymous ! </Text>
+        <Text style={styles.side_title_style}> 
+          Since Making A Disposable Email Does Not Require Contact Information, It Keeps Up The Anonymity 
+        </Text>
+	    </View>
   </View>
 
 	<View style={styles.main_style_view_swipable}>
@@ -112,18 +112,18 @@ export default class LoginPage extends React.Component{
       resizeMode="contain" 
       source={{uri:"https://media-public.canva.com/q72Mg/MACzUDq72Mg/2/tl.png"}} 
       style={styles.main_image_style}/>
-	      <View style={{justifyContent:"center",alignItems:"center",height:"100%",width:"60%"}}>
-          <Text style={styles.text_header_style}> What Are You Waiting For ? </Text>
-          <TouchableOpacity 
-            onPress={()=>this.RBSheet.close()} 
-            style={styles.lets_start_button}
-            >
+	    <View style={{justifyContent:"center",alignItems:"center",height:"100%",width:"60%"}}>
+        <Text style={styles.text_header_style}> What Are You Waiting For ? </Text>
+        <TouchableOpacity 
+          onPress={()=>this.RBSheet.close()} 
+          style={styles.lets_start_button}
+          >
             <Text style={{fontSize:16,color:"#FFF"}}> Let's Start </Text>
-          </TouchableOpacity>
+        </TouchableOpacity>
 	      </View>
   </View>
            
-   </SwipeRender>
+</SwipeRender>
 </RBSheet>
 
         <TouchableOpacity style={styles.logo_view} onPress={this.onPressLogo}>
