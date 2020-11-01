@@ -11,7 +11,8 @@ import {
   Image,
   FlatList,
   AsyncStorage,
-  Alert
+  Animated,
+  PanResponder
 } from "react-native"
 
 
@@ -30,7 +31,7 @@ function getRndInteger(min, max) {
 }
 
 
-export default class LoginPage extends React.Component{
+export default class EmailPage extends React.Component{
 
 
   onPressProps=(email,endtime)=>{
@@ -58,6 +59,19 @@ export default class LoginPage extends React.Component{
  
   UNSAFE_componentWillMount(){
     this.getMyObject()
+     this._panResponder = PanResponder.create({
+      onMoveShouldSetPanResponder: () => true,
+      onPanResponderMove: Animated.event([
+        null,
+        {dx : this.state.pan.x , dy: this.state.pan.y}
+      ]),
+      onPanResponderRelease:()=>{
+        Animated.spring(this.state.pan,{
+          toValue: { x:0 , y:0 },
+           bounciness:15
+        }).start();
+      }
+    });
   }
 
   setObjectValue = async () => {
@@ -109,7 +123,8 @@ getMyObject = async () => {
     this.state={
       isLoading: true,
       email:"",
-      data:[]
+      data:[],
+      pan : new Animated.ValueXY()
     }
   }
 
@@ -145,7 +160,12 @@ getMyObject = async () => {
   render(){
     return(
       <SafeAreaView style={styles.container}>
-      <View style={styles.main_email_box_view}>
+      <Animated.View style={{...styles.main_email_box_view, 
+          transform:[
+          { translateX : this.state.pan.x},
+        ]
+      }} 
+      {...this._panResponder.panHandlers}>
         <View style={styles.inside_email_box_view}>
           <Image source={{uri:"https://media-public.canva.com/1SMvs/MADdd_1SMvs/2/tl.png"}} resizeMode="contain" style={styles.image_view} />
           <View style={styles.new_email_text_and_button_View}>
@@ -156,7 +176,7 @@ getMyObject = async () => {
             </TouchableOpacity>
           </View>
         </View>
-      </View>
+      </Animated.View>
       
       <View style={styles.list_main_view}>
           <SwipeableFlatList
