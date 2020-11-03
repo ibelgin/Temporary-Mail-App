@@ -19,9 +19,7 @@ export default function App() {
           animationEnabled: false,
         }}
         mode={'card'}
->
-
-
+     >
       <Stack.Screen 
           name="Login"
           component={LoginScreen} 
@@ -29,8 +27,7 @@ export default function App() {
               headerShown:false
             }}
           />
-      
-
+    
       <Stack.Screen 
           name="Email"
           component={EmailScreen} 
@@ -51,8 +48,6 @@ export default function App() {
                 headerTintColor: '#FFF'
               }}
           />   
-       
-          
         
       <Stack.Screen 
           name="EmailNow"
