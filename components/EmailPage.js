@@ -4,15 +4,10 @@ import {
   Text,
   SafeAreaView,
   TouchableOpacity,
-  TextInput,
-  KeyboardAvoidingView,
   Dimensions,
   StyleSheet,
   Image,
-  FlatList,
   AsyncStorage,
-  Animated,
-  PanResponder,
   Alert
 } from "react-native"
 
@@ -34,6 +29,19 @@ function getRndInteger(min, max) {
 
 export default class EmailPage extends React.Component{
 
+ UNSAFE_componentWillMount(){
+       this.getMyObject()
+    }
+
+ constructor(props){
+    super(props);
+    this.state={
+      isLoading: true,
+      email:"",
+      data:[],
+      value:1
+    }
+  }
 
   onPressProps=(email,endtime)=>{
     const currenttime = moment()
@@ -58,22 +66,6 @@ export default class EmailPage extends React.Component{
      }
   }
  
-  UNSAFE_componentWillMount(){
-    this.getMyObject()
-     this._panResponder = PanResponder.create({
-      onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: Animated.event([
-        null,
-        {dx : this.state.pan.x , dy: this.state.pan.y}
-      ]),
-      onPanResponderRelease:()=>{
-        Animated.spring(this.state.pan,{
-          toValue: { x:0 , y:0 },
-           bounciness:15
-        }).start();
-      }
-    });
-  }
 
   setObjectValue = async () => {
   try {
@@ -90,6 +82,8 @@ getMyObject = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem('Emails')
     this.setState({ data : jsonValue != null ? JSON.parse(jsonValue) : null}) 
+    this.setState({ value : this.state.data.length})
+    this.setState({ value : this.state.value})
   } catch(e) {
     // read error
   }
@@ -117,16 +111,7 @@ getMyObject = async () => {
     this.setState({ isLoading: false });
     this.setObjectValue()
     this.getMyObject()
-  }
-
-  constructor(props){
-    super(props);
-    this.state={
-      isLoading: true,
-      email:"",
-      data:[],
-      pan : new Animated.ValueXY()
-    }
+    
   }
 
   renderItem = ({ item }) => (
@@ -161,14 +146,9 @@ getMyObject = async () => {
   render(){
     return(
       <SafeAreaView style={styles.container}>
-      <Animated.View style={{...styles.main_email_box_view, 
-          transform:[
-          { translateX : this.state.pan.x},
-        ]
-      }} 
-      {...this._panResponder.panHandlers}>
+      <View style={styles.main_email_box_view}>
         <View style={styles.inside_email_box_view}>
-          <Image source={{uri:"https://media-public.canva.com/1SMvs/MADdd_1SMvs/2/tl.png"}} resizeMode="contain" style={styles.image_view} />
+          <Image source={{uri:"https://media-public.canva.com/adoso/MAB3gKadoso/2/tl.png"}} resizeMode="contain" style={styles.image_view} />
           <View style={styles.new_email_text_and_button_View}>
             <Text style={styles.hi_there_text}>Hi There !</Text>
             <TouchableOpacity 
@@ -177,8 +157,9 @@ getMyObject = async () => {
             </TouchableOpacity>
           </View>
         </View>
-      </Animated.View>
+      </View>
       
+   {this.state.value != 0 ? 
       <View style={styles.list_main_view}>
           <SwipeableFlatList
             data={this.state.data}
@@ -194,7 +175,14 @@ getMyObject = async () => {
             bounces={true}  
             refreshing={this.state.isLoading}
         />
-        </View>
+      </View>  : 
+
+      <View style={{...styles.list_main_view,justifyContent:"center",alignItems:"center"}}>
+            <Image source={{uri:"https://media-public.canva.com/dl__Y/MADAmQdl__Y/2/tl.png"}} resizeMode="contain" style={{height:"30%",width:"100%"}} />
+            <Text style={styles.Intro_Text}> No Mails Found </Text>
+      </View>
+
+}
       </SafeAreaView>
     )
   }
@@ -253,7 +241,8 @@ const styles = StyleSheet.create({
   },
   list_main_view:{
     height:"70%",
-    width:"100%"
+    width:"100%",
+    backgroundColor:"#1A1A1F"
   },
   delete_button:{
     width:90,
@@ -287,5 +276,14 @@ const styles = StyleSheet.create({
     fontSize:13,
     color:"gray",
     marginTop:"5%"
+  },
+  image_view_2:{
+    height:"50%",
+    width:"100%"
+  },
+  Intro_Text:{
+    fontSize:15,
+    color:"gray",
+    marginTop:"15%"
   }
 })
