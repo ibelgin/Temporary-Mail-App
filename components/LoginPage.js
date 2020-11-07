@@ -115,7 +115,7 @@ export default class LoginPage extends React.Component{
 	    <View style={{justifyContent:"center",alignItems:"center",height:"100%",width:"60%"}}>
         <Text style={styles.text_header_style}> What Are You Waiting For ? </Text>
         <TouchableOpacity 
-          onPress={()=>this.RBSheet.close()} 
+          onPress={this.OnSignIn}
           style={styles.lets_start_button}
           >
             <Text style={{fontSize:16,color:"#FFF"}}> Let's Start </Text>
@@ -127,7 +127,7 @@ export default class LoginPage extends React.Component{
 </RBSheet>
 
         <TouchableOpacity style={styles.logo_view} onPress={this.onPressLogo}>
-          <Image source={require("./assets/logo.png")} style={styles.Image_Style}/>
+          <Image source={require("../assets/logo.png")} style={styles.Image_Style}/>
           <Text style={styles.login_Text}>Login In Into Your TmpMail Account To Begin</Text>
         </TouchableOpacity>
 
