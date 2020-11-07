@@ -1,2 +1,4 @@
 # React-Native-TempMail-App
-This App Is Under Devolopment 
+
+This App Will Be Out Soon
+
