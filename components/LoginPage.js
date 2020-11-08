@@ -110,7 +110,7 @@ export default class LoginPage extends React.Component{
 	<View style={styles.main_style_view_swipable}>
     <Image 
       resizeMode="contain" 
-      source={{uri:"https://media-public.canva.com/q72Mg/MACzUDq72Mg/2/tl.png"}} 
+      source={{uri:"https://media-public.canva.com/9rgKU/MAB3gE9rgKU/2/tl.png"}} 
       style={styles.main_image_style}/>
 	    <View style={{justifyContent:"center",alignItems:"center",height:"100%",width:"60%"}}>
         <Text style={styles.text_header_style}> What Are You Waiting For ? </Text>
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     flexDirection:"row"
   },
   main_image_style:{
-    height:"40%",
+    height:"50%",
     width:"30%"
   },
   text_header_style:{
