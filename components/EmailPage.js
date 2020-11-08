@@ -30,8 +30,8 @@ function getRndInteger(min, max) {
 export default class EmailPage extends React.Component{
 
  UNSAFE_componentWillMount(){
-       this.getMyObject()
-    }
+    this.getMyObject()
+  }
 
  constructor(props){
     super(props);
@@ -39,7 +39,7 @@ export default class EmailPage extends React.Component{
       isLoading: true,
       email:"",
       data:[],
-      value:1
+      value:0
     }
   }
 
@@ -61,6 +61,9 @@ export default class EmailPage extends React.Component{
       try {
         const jsonValue = JSON.stringify(filteredData)
         AsyncStorage.setItem('Emails', jsonValue)
+        this.getMyObject()
+        this.setState({ value : this.state.data.length })
+        
       } catch(e) {
          // save error
      }
@@ -71,6 +74,8 @@ export default class EmailPage extends React.Component{
   try {
     const jsonValue = JSON.stringify(this.state.data)
     await AsyncStorage.setItem('Emails', jsonValue)
+    this.setState({ value : this.state.data.length })
+
   } catch(e) {
     // save error
   }
@@ -82,8 +87,7 @@ getMyObject = async () => {
   try {
     const jsonValue = await AsyncStorage.getItem('Emails')
     this.setState({ data : jsonValue != null ? JSON.parse(jsonValue) : null}) 
-    this.setState({ value : this.state.data.length})
-    this.setState({ value : this.state.value})
+    this.setState({ value : this.state.data.length })
   } catch(e) {
     // read error
   }
@@ -111,7 +115,8 @@ getMyObject = async () => {
     this.setState({ isLoading: false });
     this.setObjectValue()
     this.getMyObject()
-    
+    this.setState({ value : this.state.data.length })
+
   }
 
   renderItem = ({ item }) => (
@@ -174,6 +179,7 @@ getMyObject = async () => {
             ItemSeparatorComponent={this.renderSeparator}
             bounces={true}  
             refreshing={this.state.isLoading}
+	    keyExtractor={(item, index) => 'key'+index}
         />
       </View>  : 
 
@@ -202,7 +208,7 @@ const styles = StyleSheet.create({
     justifyContent:"center"
   },
   inside_email_box_view:{
-    height:"80%",
+    height:"75%",
     width:"90%",
     backgroundColor:"#222228",
     borderRadius:15,
