@@ -23,7 +23,7 @@ export default class ContentPage extends React.Component{
       .then((response) => response.json())
       .then((json) => {
         this.setState({ isLoading : true})
-        this.setState({ data : json["textBody"]})
+        this.setState({ data : json["htmlBody"]})
       })
       .catch((error) => console.error(error))
       .finally(() => this.setState({isLoading : false}))
@@ -61,10 +61,8 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
     backgroundColor:"#1A1A1F",
-    alignItems:"center",
     height:"100%",
     width:"100%",
-    alignSelf:"center"
   },
   ActivityIndicator_Style:{
     marginTop:"20%"
@@ -72,7 +70,6 @@ const styles = StyleSheet.create({
   HTML_Container_Style:{
     height:"90%",
     width:"90%",
-    alignSelf:"center",
     marginTop:"10%"
   }
 })
