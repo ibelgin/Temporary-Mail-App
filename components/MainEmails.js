@@ -46,7 +46,8 @@ export default class LoginPage extends React.Component{
       email_name:this.props.route.params.email.split("@")[0],
       email_domain:this.props.route.params.email.split("@")[1],
       email:"",
-      email_id:""
+      email_id:"",
+      value:0
     }
     this.OnPressNew()
   }
@@ -79,6 +80,7 @@ export default class LoginPage extends React.Component{
   }
     this.state.data.push(test)
     this.setState({ data : this.state.data})
+    this.setState({ value : this.state.data.length })
   }
 
    onPressProps=(props)=>{
@@ -118,9 +120,24 @@ export default class LoginPage extends React.Component{
     />
   );
 
+  _listEmptyComponent =()=>{
+    return(
+      <SafeAreaView style={styles.container}>
+        <View style={styles.main_view}/>
+          <View style={{...styles.flat_list_view,justifyContent:"center",alignItems:"center"}}>
+            <Image source={{uri:"https://media-public.canva.com/viKDQ/MADmi1viKDQ/2/tl.png"}} resizeMode="contain" style={styles.image}/>
+             <View style={styles.Text_Container}>
+               <Text style={styles.text}> No Mails Found </Text>
+             </View>
+          </View>
+      </SafeAreaView>
+    )
+  }
+
 
   render(){
     return(
+      <>
       <SafeAreaView style={styles.container}>
         <View style={styles.main_view}/>
           <View style={styles.flat_list_view}>
@@ -132,9 +149,11 @@ export default class LoginPage extends React.Component{
                 onRefresh={this.OnPressNew}
                 refreshing={this.state.isLoading}
                 keyExtractor={(item, index) => 'key'+index}
+                ListEmptyComponent={this._listEmptyComponent}
               />
           </View>
-      </SafeAreaView>
+      </SafeAreaView> 
+      </>
     )
   }
 }
@@ -183,5 +202,20 @@ const styles = StyleSheet.create({
     color:"gray",
     marginLeft:"8%",
     marginTop:"4%"
+  },
+  image:{
+    height:"50%",
+    width:"90%"
+  },
+  Text_Container:{
+    height:"20%",
+    width:"100%",
+    alignItems:"center",
+    justifyContent:"center",
+    marginTop:"20%",
+  },
+  text:{
+    fontSize:16,
+    color:"gray",
   }
 })
