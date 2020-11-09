@@ -7,23 +7,30 @@ import {
   Dimensions,
   ScrollView,
   ActivityIndicator,
-  StyleSheet
+  StyleSheet,
+  Image
 } from "react-native"
 
 import HTML from 'react-native-render-html';
+import SnackBar from 'react-native-snackbar-component'
 
 export default class ContentPage extends React.Component{
 
   UNSAFE_componentWillMount(){
-    this.SeeMessage()
+    this.SeeMessageText()
   }
 
   SeeMessage=()=>{
+    this.setState({ visiblity : false })
+  }
+
+   SeeMessageText=()=>{
     fetch("https://www.1secmail.com/api/v1/?action=readMessage&login="+this.state.email_name+"&domain="+this.state.email_domain+"&id="+this.state.id)
       .then((response) => response.json())
       .then((json) => {
         this.setState({ isLoading : true})
-        this.setState({ data : json["htmlBody"]})
+        this.setState({ data : json["textBody"]})
+        this.setState({ visible : false})
       })
       .catch((error) => console.error(error))
       .finally(() => this.setState({isLoading : false}))
@@ -36,23 +43,28 @@ export default class ContentPage extends React.Component{
       isLoading:true,
       email_name:this.props.route.params.email_name,
       email_domain:this.props.route.params.email_domain,
-      id:this.props.route.params.email_id
+      id:this.props.route.params.email_id,
+      visiblity:true
     }
     this.SeeMessage()
   }
 
   render(){
     return(
-      <ScrollView style={styles.container} >
-        {this.state.isLoading ? <ActivityIndicator style={styles.ActivityIndicator_Style} color="#FFF" /> : (
-          <HTML 
-          html={this.state.data}  
-          containerStyle={styles.HTML_Container_Style} 
-          textSelectable={true} 
-          decodeEntities={true}
-          baseFontStyle={{color:"#FFF"}}/>
-        )}  
-      </ScrollView>
+      <>
+        <ScrollView style={styles.container} >
+          {this.state.isLoading ? <ActivityIndicator style={styles.ActivityIndicator_Style} color="#FFF" /> : (
+            <View style={styles.text_container}>
+              <Text  selectable={true} style={styles.text}>{this.state.data}</Text>
+            </View>
+          )}  
+        </ScrollView>
+        <SnackBar 
+          visible={this.state.visiblity} 
+          textMessage="Only Text Will Be Shown " actionHandler={this.SeeMessage} actionText="Know More"
+          backgroundColor="#572CE8" messageColor="#FFF" accentColor="#FFF" 
+        />
+      </>
     )
   }
 }
@@ -61,16 +73,18 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
     backgroundColor:"#1A1A1F",
-    height:"100%",
+    height:"90%",
     width:"100%",
   },
   ActivityIndicator_Style:{
     marginTop:"20%"
   },
-  HTML_Container_Style:{
-    height:"90%",
-    width:"90%",
-    marginTop:"10%"
+  text_container:{
+    height:"100%",
+    width:"90%"
+  },
+  text:{
+    color:"#FFF"
   }
 })
 
