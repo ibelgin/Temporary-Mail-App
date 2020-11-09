@@ -46,7 +46,7 @@ export default class EmailPage extends React.Component{
       isLoading: true,
       email:"",
       data:[],
-      value:1,
+      value:0,
       modalVisible:true
     }
   }
