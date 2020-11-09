@@ -47,7 +47,7 @@ export default class LoginPage extends React.Component{
       email_domain:this.props.route.params.email.split("@")[1],
       email:"",
       email_id:"",
-      value:0
+      value:1
     }
     this.OnPressNew()
   }
@@ -123,7 +123,6 @@ export default class LoginPage extends React.Component{
   _listEmptyComponent =()=>{
     return(
       <SafeAreaView style={styles.container}>
-        <View style={styles.main_view}/>
           <View style={{...styles.flat_list_view,justifyContent:"center",alignItems:"center"}}>
             <Image source={{uri:"https://media-public.canva.com/viKDQ/MADmi1viKDQ/2/tl.png"}} resizeMode="contain" style={styles.image}/>
              <View style={styles.Text_Container}>
@@ -137,7 +136,6 @@ export default class LoginPage extends React.Component{
 
   render(){
     return(
-      <>
       <SafeAreaView style={styles.container}>
         <View style={styles.main_view}/>
           <View style={styles.flat_list_view}>
@@ -153,7 +151,6 @@ export default class LoginPage extends React.Component{
               />
           </View>
       </SafeAreaView> 
-      </>
     )
   }
 }
@@ -211,8 +208,7 @@ const styles = StyleSheet.create({
     height:"20%",
     width:"100%",
     alignItems:"center",
-    justifyContent:"center",
-    marginTop:"20%",
+    justifyContent:"center"
   },
   text:{
     fontSize:16,
