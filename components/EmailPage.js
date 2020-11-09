@@ -8,9 +8,12 @@ import {
   StyleSheet,
   Image,
   AsyncStorage,
-  Alert
+  Alert,
+  Clipboard,
+  ToastAndroid,
+  Modal,
+  TouchableHighlight
 } from "react-native"
-
 
 const Dev_Height = Dimensions.get('window').height
 const Dev_Width = Dimensions.get('window').width
@@ -26,10 +29,14 @@ function getRndInteger(min, max) {
   return  Math.floor(Math.random() * (max - min) ) + min;
 }
 
-
 export default class EmailPage extends React.Component{
 
- UNSAFE_componentWillMount(){
+  OnLongPressEmail= async (test)=>{
+      await Clipboard.setString(test);
+      ToastAndroid.show("Copied To Clipboard", ToastAndroid.LONG);
+    }
+
+  componentDidMount(){
     this.getMyObject()
   }
 
@@ -39,7 +46,8 @@ export default class EmailPage extends React.Component{
       isLoading: true,
       email:"",
       data:[],
-      value:0
+      value:1,
+      modalVisible:true
     }
   }
 
@@ -63,7 +71,6 @@ export default class EmailPage extends React.Component{
         AsyncStorage.setItem('Emails', jsonValue)
         this.getMyObject()
         this.setState({ value : this.state.data.length })
-        
       } catch(e) {
          // save error
      }
@@ -75,7 +82,7 @@ export default class EmailPage extends React.Component{
     const jsonValue = JSON.stringify(this.state.data)
     await AsyncStorage.setItem('Emails', jsonValue)
     this.setState({ value : this.state.data.length })
-
+    
   } catch(e) {
     // save error
   }
@@ -83,15 +90,18 @@ export default class EmailPage extends React.Component{
 }
 
 
-getMyObject = async () => {
-  try {
-    const jsonValue = await AsyncStorage.getItem('Emails')
-    this.setState({ data : jsonValue != null ? JSON.parse(jsonValue) : null}) 
-    this.setState({ value : this.state.data.length })
-  } catch(e) {
+ getMyObject = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem('Emails');
+      if (jsonValue) {
+        const data = JSON.parse(jsonValue);
+        this.setState({ data: data, value: data.length });
+        this.setState({ email: jsonValue[0], isLoading: true });     
+      }
+    } catch (e) {
     // read error
-  }
-}
+    }
+};
 
   OnPressNew=()=>{
     fetch('https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=1')
@@ -120,7 +130,7 @@ getMyObject = async () => {
   }
 
   renderItem = ({ item }) => (
-    <TouchableOpacity style={styles.email_touch} onPress={()=> this.onPressProps(item.email,item.time)}>
+    <TouchableOpacity style={styles.email_touch} onPress={()=> this.onPressProps(item.email,item.time)} onLongPress={()=>this.OnLongPressEmail(item.email)}>
       <View style={styles.email_main_view}>
         <View style={{height:"100%",width:"3%",backgroundColor:item.color,borderRadius:45}}/>
         <View style={styles.email_container}>
@@ -179,16 +189,15 @@ getMyObject = async () => {
             ItemSeparatorComponent={this.renderSeparator}
             bounces={true}  
             refreshing={this.state.isLoading}
-	    keyExtractor={(item, index) => 'key'+index}
+	          keyExtractor={(item, index) => 'key'+index}
         />
       </View>  : 
 
       <View style={{...styles.list_main_view,justifyContent:"center",alignItems:"center"}}>
-            <Image source={{uri:"https://media-public.canva.com/dl__Y/MADAmQdl__Y/2/tl.png"}} resizeMode="contain" style={{height:"30%",width:"100%"}} />
-            <Text style={styles.Intro_Text}> No Mails Found </Text>
+        <Image source={{uri:"https://media-public.canva.com/dl__Y/MADAmQdl__Y/2/tl.png"}} resizeMode="contain" style={{height:"30%",width:"100%"}} />
+        <Text style={styles.Intro_Text}> No Mails Found </Text>
       </View>
-
-}
+    }
       </SafeAreaView>
     )
   }
@@ -283,13 +292,9 @@ const styles = StyleSheet.create({
     color:"gray",
     marginTop:"5%"
   },
-  image_view_2:{
-    height:"50%",
-    width:"100%"
-  },
   Intro_Text:{
     fontSize:15,
     color:"gray",
     marginTop:"15%"
-  }
+  },
 })
