@@ -97,6 +97,7 @@ export default class EmailPage extends React.Component{
         const data = JSON.parse(jsonValue);
         this.setState({ data: data, value: data.length });
         this.setState({ email: jsonValue[0], isLoading: true });     
+        this.setState({ value : this.state.data.length })
       }
     } catch (e) {
     // read error
