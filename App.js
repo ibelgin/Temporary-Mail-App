@@ -56,6 +56,7 @@ export default function App() {
           name="EmailNow"
           component={EmailMain} 
             options={{
+	      title:""
               headerShown:false
             }}
           />
