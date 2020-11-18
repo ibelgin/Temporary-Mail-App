@@ -9,7 +9,6 @@ import {
   Image,
   AsyncStorage,
   Alert,
-  Clipboard,
   ToastAndroid,
   Modal,
   TouchableHighlight
@@ -20,6 +19,7 @@ const Dev_Width = Dimensions.get('window').width
 
 import Icon from "react-native-vector-icons/AntDesign"
 import {SwipeableFlatList} from 'react-native-swipeable-flat-list';
+import Clipboard from '@react-native-community/clipboard';
 import moment from 'moment';
 
 const colors = ["#55E552","#FF8A00","#572CE8"]
@@ -32,7 +32,7 @@ function getRndInteger(min, max) {
 export default class EmailPage extends React.Component{
 
   OnLongPressEmail= async (test)=>{
-      await Clipboard.setString(test);
+      Clipboard.setString(test);
       ToastAndroid.show("Copied To Clipboard", ToastAndroid.LONG);
     }
 
