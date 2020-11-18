@@ -5,6 +5,7 @@ import LoginScreen from "./components/LoginPage";
 import EmailScreen from "./components/EmailPage";
 import EmailMain from "./components/MainEmails";
 import ContentPage from "./components/ContentPage"
+import TermsScreen from "./components/TermsScreen"
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,14 @@ export default function App() {
           animationEnabled: false,
         }}
         mode={'card'}>
+
+      <Stack.Screen
+          name="Terms"
+          component={TermsScreen} 
+            options={{
+              headerShown:false
+            }}
+          />
 
       <Stack.Screen 
           name="Login"
@@ -41,7 +50,7 @@ export default function App() {
           name="Content"
           component={ContentPage} 
             options={{
-                title: 'Email',
+                title: 'Back',
                 headerStyle: {
                   backgroundColor: '#1A1A1F',
                   shadowColor: 'transparent'
@@ -50,15 +59,17 @@ export default function App() {
               }}
           />   
        
-          
-        
       <Stack.Screen 
           name="EmailNow"
           component={EmailMain} 
             options={{
-	      title:"",
-              headerShown:false
-            }}
+                title: 'All Emails',
+                headerStyle: {
+                  backgroundColor: '#1A1A1F',
+                  shadowColor: 'transparent'
+                },
+                headerTintColor: '#FFF'
+              }}
           />
       </Stack.Navigator>
     </NavigationContainer>
