@@ -23,6 +23,7 @@ export default class LoginPage extends React.Component{
 
   OnSignIn=()=>{
     this.props.navigation.navigate("Email")
+    this.RBSheet.close()
   }
 
   onPressLogo=()=>{
@@ -36,7 +37,7 @@ export default class LoginPage extends React.Component{
   render(){
     return(
       <SafeAreaView style={styles.container}>
-      <StatusBar backgroundColor="#1A1A1A" barStyle="light-content"/>
+      <StatusBar backgroundColor="#1A1A1F" barStyle="light-content"/>
       <RBSheet
           ref={ref => {
             this.RBSheet = ref;
