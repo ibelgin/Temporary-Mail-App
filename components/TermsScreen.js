@@ -7,7 +7,8 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  StatusBar
 } from "react-native"
 
 const Dev_Height = Dimensions.get('window').height
@@ -24,6 +25,7 @@ export default class TermsScreen extends React.Component{
   render(){
     return(
       <SafeAreaView style={styles.container}>
+        <StatusBar backgroundColor="#1A1A1F" barStyle="light-content"/>
         <View style={styles.inside_email_box_view}>
           <Image 
             source={{uri:"https://media-public.canva.com/adoso/MAB3gKadoso/2/tl.png"}} 
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
   },
   text_style:{
     color:"#FFF",
-    fontSize:14,
+    fontSize:16,
   },
   google_signin_view:{
     height:"20%",
