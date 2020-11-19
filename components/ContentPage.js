@@ -8,7 +8,8 @@ import {
   ScrollView,
   ActivityIndicator,
   StyleSheet,
-  Image
+  Image,
+  StatusBar
 } from "react-native"
 
 import HTML from 'react-native-render-html';
@@ -52,6 +53,7 @@ export default class ContentPage extends React.Component{
   render(){
     return(
       <>
+      <StatusBar backgroundColor="#1A1A1F" barStyle="light-content"/>
         <ScrollView style={styles.container} >
           {this.state.isLoading ? <ActivityIndicator style={styles.ActivityIndicator_Style} color="#FFF" /> : (
             <View style={styles.text_container}>
