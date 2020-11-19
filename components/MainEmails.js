@@ -12,7 +12,8 @@ import {
   FlatList,
   PanResponder,
   Animated,
-  TouchableHighlight
+  TouchableHighlight,
+  StatusBar
 } from "react-native"
 
 const Dev_Height = Dimensions.get('window').height
@@ -137,6 +138,7 @@ export default class LoginPage extends React.Component{
   render(){
     return(
       <SafeAreaView style={styles.container}>
+      <StatusBar backgroundColor="#1A1A1F" barStyle="light-content"/>
         <View style={styles.main_view}/>
           <View style={styles.flat_list_view}>
               <FlatList
