@@ -17,7 +17,7 @@
 
 ## Check Out The Demo Video
 
-[Youtube Channel - Belgin Android](https://youtube.com/c/belginandroid)
+[Youtube Channel - Belgin Android](https://www.youtube.com/watch?v=nqAJO_3wvro)
 
 ## Sample Preview
 
