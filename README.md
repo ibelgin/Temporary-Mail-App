@@ -10,6 +10,8 @@
 
 > Run The App
 
+> Run React-native run-android
+
 ## Built With
 
 * React Native
