@@ -1,6 +1,6 @@
 import React from "react"
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LoginScreen from "./components/LoginPage";
 import EmailScreen from "./components/EmailPage";
@@ -8,7 +8,7 @@ import EmailMain from "./components/MainEmails";
 import ContentPage from "./components/ContentPage"
 import TermsScreen from "./components/TermsScreen"
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
@@ -76,4 +76,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-

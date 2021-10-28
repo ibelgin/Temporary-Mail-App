@@ -217,8 +217,8 @@ export default class EmailPage extends React.Component{
           <Image source={{uri:"https://media-public.canva.com/adoso/MAB3gKadoso/2/tl.png"}} resizeMode="contain" 
           style={{height:"100%",width:"100%"}} />
         </Animated.View>
-          <View style={styles.new_email_text_and_button_View}>
-            <Text style={styles.hi_there_text}>Hi There !</Text>
+          <View style={styles.new_email_text_and_button_View}>                
+            <Text style={styles.hi_there_text}>Hi There !   <Icon onPress={()=>console.log("Hi I am test")} name="setting" color="#a1a1a1" style={{marginLeft:"20%",textAlign:"center"}} size={24}/></Text>
             <TouchableOpacity 
                 style={styles.new_email_button} onPress={this.OnPressNew}>
               <Text style={styles.new_email_button_text}>New Email</Text>
@@ -291,7 +291,8 @@ const styles = StyleSheet.create({
   hi_there_text:{
     fontSize:18,
     color:"white",
-    marginLeft:"10%"
+    marginLeft:"10%",
+    textAlign:"center",
   },
   new_email_button:{
     height:"20%",

@@ -17,8 +17,8 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import SwipeRender from "react-native-swipe-render";
 import NetInfo from "@react-native-community/netinfo";
 
-const Dev_Height = Dimensions.get('window').height
-const Dev_Width = Dimensions.get('window').width
+const Dev_Height = Dimensions.get('screen').height
+const Dev_Width = Dimensions.get('screen').width
 
 export default class LoginPage extends React.Component{
 
