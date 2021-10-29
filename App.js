@@ -7,6 +7,8 @@ import EmailScreen from "./components/EmailPage";
 import EmailMain from "./components/MainEmails";
 import ContentPage from "./components/ContentPage"
 import TermsScreen from "./components/TermsScreen"
+import Disclaimer from "./components/Disclaimer";
+import SettingsPage from "./components/SettingsPage"
 
 const Stack = createNativeStackNavigator();
 
@@ -14,7 +16,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-	      initialRouteName={'Login'}
+        initialRouteName={'Login'}
         screenOptions={{
           gestureEnabled: true,
           gestureDirection: 'vertical',
@@ -22,56 +24,83 @@ export default function App() {
         }}
         mode={'card'}>
 
-      <Stack.Screen
+        <Stack.Screen
           name="Terms"
-          component={TermsScreen} 
-            options={{
-              headerShown:false
-            }}
-          />
+          component={TermsScreen}
+          options={{
+            headerShown: false
+          }}
+        />
 
-      <Stack.Screen 
+        <Stack.Screen
           name="Login"
-          component={LoginScreen} 
-            options={{
-              headerShown:false
-            }}
-          />
-      
+          component={LoginScreen}
+          options={{
+            headerShown: false
+          }}
+        />
 
-      <Stack.Screen 
+
+        <Stack.Screen
           name="Email"
-          component={EmailScreen} 
-            options={{
-              headerShown:false
-            }}
-          />  
-          
-      <Stack.Screen 
+          component={EmailScreen}
+          options={{
+            headerShown: false
+          }}
+        />
+
+        <Stack.Screen
           name="Content"
-          component={ContentPage} 
-            options={{
-                title: 'Back',
-                headerStyle: {
-                  backgroundColor: '#1A1A1F',
-                  shadowColor: 'transparent'
-                },
-                headerTintColor: '#FFF'
-              }}
-          />   
-       
-      <Stack.Screen 
+          component={ContentPage}
+          options={{
+            title: 'Back',
+            headerStyle: {
+              backgroundColor: '#1A1A1F',
+              shadowColor: 'transparent'
+            },
+            headerTintColor: '#FFF'
+          }}
+        />
+
+        <Stack.Screen
+          name="Setting"
+          component={SettingsPage}
+          options={{
+            title: 'Settings',
+            headerStyle: {
+              backgroundColor: '#1A1A1F',
+              shadowColor: 'transparent'
+            },
+            headerTintColor: '#FFF'
+          }}
+        />
+
+        <Stack.Screen
           name="EmailNow"
-          component={EmailMain} 
-            options={{
-                title: 'All Emails',
-                headerStyle: {
-                  backgroundColor: '#1A1A1F',
-                  shadowColor: 'transparent'
-                },
-                headerTintColor: '#FFF'
-              }}
-          />
+          component={EmailMain}
+          options={{
+            title: 'All Emails',
+            headerStyle: {
+              backgroundColor: '#1A1A1F',
+              shadowColor: 'transparent'
+            },
+            headerTintColor: '#FFF'
+          }}
+        />
+
+        <Stack.Screen
+          name="disclaimer"
+          component={Disclaimer}
+          options={{
+            title: 'Disclaimer',
+            headerStyle: {
+              backgroundColor: '#1A1A1F',
+              shadowColor: 'transparent'
+            },
+            headerTintColor: '#FFF'
+          }}
+        />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
