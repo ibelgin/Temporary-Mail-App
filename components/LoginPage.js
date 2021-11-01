@@ -93,13 +93,12 @@ export default class LoginPage extends React.Component {
             bounces={true}
           >
 
-
-
             <View style={styles.main_style_view_swipable}>
               <Image
                 resizeMode="contain"
                 source={{ uri: "https://media-public.canva.com/MADpjvqNf0I/1/thumbnail_large.png" }}
-                style={styles.main_image_style} />
+                style={styles.main_image_style} 
+              />
               <View style={styles.secondary_view}>
                 <Text style={styles.text_header_style}> Protect Your Privacy ! </Text>
                 <Text style={styles.side_title_style}>
@@ -112,7 +111,8 @@ export default class LoginPage extends React.Component {
               <Image
                 resizeMode="contain"
                 source={{ uri: "https://media-public.canva.com/MADr0Rcb_yI/1/thumbnail_large.png" }}
-                style={styles.main_image_style} />
+                style={styles.main_image_style} 
+              />
               <View style={styles.secondary_view}>
                 <Text style={styles.text_header_style}> Say No To Spam ! </Text>
                 <Text style={styles.side_title_style}>
@@ -125,7 +125,8 @@ export default class LoginPage extends React.Component {
               <Image
                 resizeMode="contain"
                 source={{ uri: "https://media-public.canva.com/iYqdw/MAC-MXiYqdw/2/tl.png" }}
-                style={styles.main_image_style} />
+                style={styles.main_image_style} 
+              />
               <View style={styles.secondary_view}>
                 <Text style={{ color: "#F1F1F1", fontSize: 17 }}> You Are Anonymous ! </Text>
                 <Text style={styles.side_title_style}>
@@ -149,7 +150,6 @@ export default class LoginPage extends React.Component {
                 </TouchableOpacity>
               </View>
             </View>
-
           </SwipeRender>
         </RBSheet>
 
